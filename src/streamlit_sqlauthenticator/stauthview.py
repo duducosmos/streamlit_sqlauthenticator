@@ -28,6 +28,7 @@ class STAuthView:
 
     def login_button(self, username, password):
         if self._stauth.login(username, password):
+            st.empty()
             self._session_state['loggedIn'] = True
         else:
             st.error("Wrong User or Password")
@@ -87,23 +88,23 @@ class STAuthView:
         with self._login_section:
             if self._session_state['loggedIn'] is False and self._session_state['sigin'] is False:
 
-                with st.form("login-form"):
-                    username = st.text_input(
-                        label="Name", value="", placeholder="Enter your user name")
-                    password = st.text_input(
-                        label="Password", value="", placeholder="Enter password", type="password")
+                #with st.form("login-form"):
+                username = st.text_input(
+                    label="Name", value="", placeholder="Enter your user name")
+                password = st.text_input(
+                    label="Password", value="", placeholder="Enter password", type="password")
 
-                    cols = st.columns(5)
+                cols = st.columns(5)
 
-                    with cols[2]:
-                        st.form_submit_button("Login",
-                                              on_click=self.login_button,
-                                              args=(username, password)
-                                              )
+                with cols[2]:
+                    st.button("Login",
+                                            on_click=self.login_button,
+                                            args=(username, password)
+                                            )
 
-                        st.form_submit_button("Sigin",
-                                              on_click=self.sigin_button
-                                              )
+                    st.button("Sigin",
+                                            on_click=self.sigin_button
+                                            )
 
             elif self._session_state['sigin'] is True:
                 self.sigin_page()
