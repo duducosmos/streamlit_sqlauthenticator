@@ -118,6 +118,11 @@ class STAuthView:
                 st.button("Logout",
                           on_click=self.logout_button
                           )
+                
+
+    @property
+    def database(self):
+        return self._stauth.database
 
     @property
     def session_state(self):
