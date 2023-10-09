@@ -34,7 +34,7 @@ class STAuthView:
             st.error("Wrong User or Password")
 
     def logout_button(self):
-        self._login_section.empty()
+        st.empty()
         self._session_state['sigin'] = False
         self._session_state['loggedIn'] = False
         st.rerun
